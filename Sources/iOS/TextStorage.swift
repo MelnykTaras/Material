@@ -106,7 +106,7 @@ extension TextStorage {
      - Returns: The attributes for the character at index.
      */
 	open override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key: Any] {
-		return convertFromNSAttributedStringKeyDictionary(storage.attributes(at: location, effectiveRange: range))
+		return storage.attributes(at: location, effectiveRange: range)
 	}
 	
 	/**
@@ -176,9 +176,9 @@ fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Ke
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromNSAttributedStringKeyDictionary(_ input: [NSAttributedString.Key: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
+//fileprivate func convertFromNSAttributedStringKeyDictionary(_ input: [NSAttributedString.Key: Any]) -> [String: Any] {
+//    return Dictionary(uniqueKeysWithValues: input.map { key, value in (key.rawValue, value) })
+//}
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {

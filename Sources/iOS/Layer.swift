@@ -94,15 +94,15 @@ open class Layer: CAShapeLayer {
 	}
 	
 	/// Determines how content should be aligned within the visualLayer's bounds.
-	@IBInspectable
-    open override var contentsGravity: String {
-		get {
-			return convertFromCALayerContentsGravity(visualLayer.contentsGravity)
-		}
-		set(value) {
-			visualLayer.contentsGravity = convertToCALayerContentsGravity(value)
-		}
-	}
+//    @IBInspectable
+//    open override var contentsGravity: String {
+//        get {
+//            return convertFromCALayerContentsGravity(visualLayer.contentsGravity)
+//        }
+//        set(value) {
+//            visualLayer.contentsGravity = convertToCALayerContentsGravity(value)
+//        }
+//    }
 	
 	/**
      A property that sets the cornerRadius of the backing layer. If the shape

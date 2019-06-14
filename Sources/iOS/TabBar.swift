@@ -393,20 +393,20 @@ fileprivate extension TabBar {
         
         selectedTabItem = tabItem
         
-        line.animate(.duration(0.25),
-                     .size(CGSize(width: tabItem.width, height: lineHeight)),
-                     .position(CGPoint(x: tabItem.center.x, y: .bottom == lineAlignment ? height - lineHeight / CGFloat(2) : lineHeight / CGFloat(2))),
-                     .completion { [weak self, isTriggeredByUserInteraction = isTriggeredByUserInteraction, tabItem = tabItem, completion = completion] _ in
-                        guard let s = self else {
-                            return
-                        }
-        
-                        if isTriggeredByUserInteraction {
-                            s.delegate?.tabBar?(tabBar: s, didSelect: tabItem)
-                        }
-                        
-                        completion?(tabItem)
-                     })
+//        line.animate(.duration(0.25),
+//                     .size(CGSize(width: tabItem.width, height: lineHeight)),
+//                     .position(CGPoint(x: tabItem.center.x, y: .bottom == lineAlignment ? height - lineHeight / CGFloat(2) : lineHeight / CGFloat(2))),
+//                     .completion { [weak self, isTriggeredByUserInteraction = isTriggeredByUserInteraction, tabItem = tabItem, completion = completion] _ in
+//                        guard let s = self else {
+//                            return
+//                        }
+//        
+//                        if isTriggeredByUserInteraction {
+//                            s.delegate?.tabBar?(tabBar: s, didSelect: tabItem)
+//                        }
+//                        
+//                        completion?(tabItem)
+//                     })
         
         updateScrollView()
     }
