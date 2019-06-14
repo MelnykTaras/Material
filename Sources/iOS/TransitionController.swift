@@ -212,9 +212,9 @@ internal extension TransitionController {
             return
         }
         
-        addChildViewController(v)
+        addChild(v)
         container.addSubview(v.view)
-        v.didMove(toParentViewController: self)
+        v.didMove(toParent: self)
         v.view.frame = container.bounds
         v.view.clipsToBounds = true
         v.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]

@@ -733,7 +733,7 @@ extension Motion: UIViewControllerInteractiveTransitioning {
 }
 
 extension Motion: UINavigationControllerDelegate {
-    public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.isPresenting = .push == operation
         self.fromViewController = fromViewController ?? fromVC
         self.toViewController = toViewController ?? toVC
@@ -758,8 +758,8 @@ extension Motion: UITabBarControllerDelegate {
     public func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isAnimating = true
         
-        let fromVCIndex = tabBarController.childViewControllers.index(of: fromVC)!
-        let toVCIndex = tabBarController.childViewControllers.index(of: toVC)!
+        let fromVCIndex = tabBarController.children.index(of: fromVC)!
+        let toVCIndex = tabBarController.children.index(of: toVC)!
         
         self.isPresenting = toVCIndex > fromVCIndex
         self.fromViewController = fromViewController ?? fromVC
@@ -843,11 +843,16 @@ extension Motion {
      */
     public class func animate(group animations: [CAAnimation], timingFunction: CAMediaTimingFunction = .easeInOut, duration: CFTimeInterval = 0.5) -> CAAnimationGroup {
         let group = CAAnimationGroup()
-        group.fillMode = MotionAnimationFillModeToValue(mode: .both)
+        group.fillMode = convertToCAMediaTimingFillMode(MotionAnimationFillModeToValue(mode: .both))
         group.isRemovedOnCompletion = false
         group.animations = animations
         group.duration = duration
         group.timingFunction = timingFunction
         return group
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToCAMediaTimingFillMode(_ input: String) -> CAMediaTimingFillMode {
+	return CAMediaTimingFillMode(rawValue: input)
 }

@@ -289,13 +289,13 @@ extension TextView {
     /// Prepares the Notification handlers.
     fileprivate func prepareNotificationHandlers() {
         let defaultCenter = NotificationCenter.default
-        defaultCenter.addObserver(self, selector: #selector(handleKeyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        defaultCenter.addObserver(self, selector: #selector(handleKeyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        defaultCenter.addObserver(self, selector: #selector(handleKeyboardDidShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        defaultCenter.addObserver(self, selector: #selector(handleKeyboardDidHide(notification:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
-        defaultCenter.addObserver(self, selector: #selector(handleTextViewTextDidBegin), name: NSNotification.Name.UITextViewTextDidBeginEditing, object: self)
-        defaultCenter.addObserver(self, selector: #selector(handleTextViewTextDidChange), name: NSNotification.Name.UITextViewTextDidChange, object: self)
-        defaultCenter.addObserver(self, selector: #selector(handleTextViewTextDidEnd), name: NSNotification.Name.UITextViewTextDidEndEditing, object: self)
+        defaultCenter.addObserver(self, selector: #selector(handleKeyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        defaultCenter.addObserver(self, selector: #selector(handleKeyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        defaultCenter.addObserver(self, selector: #selector(handleKeyboardDidShow(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        defaultCenter.addObserver(self, selector: #selector(handleKeyboardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+        defaultCenter.addObserver(self, selector: #selector(handleTextViewTextDidBegin), name: UITextView.textDidBeginEditingNotification, object: self)
+        defaultCenter.addObserver(self, selector: #selector(handleTextViewTextDidChange), name: UITextView.textDidChangeNotification, object: self)
+        defaultCenter.addObserver(self, selector: #selector(handleTextViewTextDidEnd), name: UITextView.textDidEndEditingNotification, object: self)
     }
     
     /// Prepares the regular expression for matching.
@@ -352,7 +352,7 @@ extension TextView {
             return
         }
         
-        guard let v = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else {
+        guard let v = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else {
             return
         }
         
@@ -371,7 +371,7 @@ extension TextView {
         
         isKeyboardHidden = false
         
-        guard let v = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else {
+        guard let v = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else {
             return
         }
         
@@ -388,7 +388,7 @@ extension TextView {
             return
         }
         
-        guard let v = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue else {
+        guard let v = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
             return
         }
         
@@ -407,7 +407,7 @@ extension TextView {
         
         isKeyboardHidden = true
         
-        guard let v = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue else {
+        guard let v = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
             return
         }
         

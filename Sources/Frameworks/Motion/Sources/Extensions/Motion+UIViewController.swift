@@ -224,7 +224,7 @@ extension UIViewController {
         var current: UIViewController? = self
         
         while nil == target && nil != current {
-            if let childViewControllers = (current as? UINavigationController)?.childViewControllers ?? current!.navigationController?.childViewControllers {
+            if let childViewControllers = (current as? UINavigationController)?.children ?? current!.navigationController?.children {
                 for v in childViewControllers.reversed() {
                     if self != v, withMatchBlock(v) {
                         target = v
@@ -290,7 +290,7 @@ extension UIViewController {
         }
         
         if let nc = navigationController {
-            var v = nc.childViewControllers
+            var v = nc.children
             
             if !v.isEmpty {
                 v.removeLast()

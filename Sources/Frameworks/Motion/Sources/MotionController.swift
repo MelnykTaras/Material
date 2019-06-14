@@ -89,7 +89,7 @@ public class MotionController: NSObject {
         didSet {
             guard nil != beginTime else {
                 displayLink?.isPaused = true
-                displayLink?.remove(from: RunLoop.main, forMode: RunLoopMode(rawValue: RunLoopMode.commonModes.rawValue))
+                displayLink?.remove(from: RunLoop.main, forMode: RunLoop.Mode(rawValue: RunLoop.Mode.common.rawValue))
                 displayLink = nil
                 return
             }
@@ -99,7 +99,7 @@ public class MotionController: NSObject {
             }
             
             displayLink = CADisplayLink(target: self, selector: #selector(handleDisplayLink(_:)))
-            displayLink?.add(to: RunLoop.main, forMode: RunLoopMode(rawValue: RunLoopMode.commonModes.rawValue))
+            displayLink?.add(to: RunLoop.main, forMode: RunLoop.Mode(rawValue: RunLoop.Mode.common.rawValue))
         }
     }
 

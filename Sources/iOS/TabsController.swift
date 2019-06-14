@@ -184,7 +184,7 @@ fileprivate extension TabsController {
     func prepareViewController(at index: Int) {
         let v = viewControllers[index]
         
-        guard !childViewControllers.contains(v) else {
+        guard !children.contains(v) else {
             return
         }
         
@@ -255,9 +255,9 @@ fileprivate extension TabsController {
      - Parameter at index: An Int for the view controller position.
      */
     func removeViewController(viewController: UIViewController) {
-        viewController.willMove(toParentViewController: nil)
+        viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
-        viewController.removeFromParentViewController()
+        viewController.removeFromParent()
     }
 }
 
